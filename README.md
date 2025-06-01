@@ -1,4 +1,4 @@
-# FTP File Transfer App (Web + C Sockets)
+FTP File Transfer App (Web + C Sockets)
 
 This is a simple **file upload/download system** built in two parts:
 
@@ -12,4 +12,4 @@ Web App Features (Flask)
 - Download files by entering the filename
 - Fully styled HTML frontend
 
-### 📁 Folder Structure
+Folder Structure
