@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTP Upload - Download</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            width: 420px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .form-group input[type="file"], 
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .message {
+            color: red;
+            margin-bottom: 10px;
+        }
+        .message p {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FTP Upload - Download</h1>
+
+        <!-- Flash messages for feedback -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="message">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Upload Form -->
+        <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data" class="form-group">
+            <label for="file">Choose a file to upload:</label>
+            <input type="file" id="file" name="file" required>
+            <button type="submit">Upload File</button>
+        </form>
+
+        <hr>
+
+        <!-- Download Form -->
+        <form action="{{ url_for('download_file') }}" method="post" class="form-group">
+            <label for="downloadFilename">Enter the filename to download:</label>
+            <input type="text" id="downloadFilename" name="downloadFilename" required placeholder="filename.ext">
+            <button type="submit">Download File</button>
+        </form>
+    </div>
+</body>
+</html>
